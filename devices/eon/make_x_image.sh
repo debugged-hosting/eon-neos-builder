@@ -15,12 +15,13 @@ $TOOLS/extract_toolchains.sh
 mkdir -p $OUT
 
 if [ ! -d android_kernel_comma_msm8996 ]; then
-  git clone https://github.com/commaai/android_kernel_comma_msm8996.git --depth 1
+  git clone https://github.com/commaai/android_kernel_comma_msm8996.git
 fi
 
 # Compile kernel
 cd android_kernel_comma_msm8996
-git pull
+git fetch --all
+git checkout faa493113452db5e572daf76060ac03e23dfe4c9
 make comma_defconfig
 make -j$(nproc --all)
 cd ..
